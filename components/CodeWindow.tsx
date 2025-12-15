@@ -79,7 +79,7 @@ export default function CodeWindow() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="w-full max-w-lg mx-auto bg-gray-900 rounded-xl overflow-hidden border border-gray-800 shadow-2xl shadow-movement-yellow/10"
+      className="w-full max-w-lg mx-auto bg-gray-900 rounded-xl overflow-hidden border border-gray-800 shadow-2xl shadow-movement-yellow/10 flex-shrink-0"
     >
       {/* Window Header */}
       <div className="bg-gray-800/50 px-4 py-3 flex items-center gap-2 border-b border-gray-700">
@@ -90,7 +90,7 @@ export default function CodeWindow() {
       </div>
 
       {/* Code Area */}
-      <div className="p-6 font-mono text-sm overflow-hidden min-h-[250px] text-left">
+      <div className="p-6 font-mono text-sm overflow-y-auto min-h-[350px] text-left">
         <pre className="whitespace-pre-wrap break-words">
           {highlightSyntax(displayedCode)}
           <motion.span

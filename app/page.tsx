@@ -37,7 +37,10 @@ export default function Home() {
         
         <section className="px-6 py-20 bg-black">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-sm font-bold text-movement-yellow tracking-widest uppercase mb-12">Products</h2>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-px w-12 bg-movement-yellow"></div>
+              <h2 className="text-base font-semibold text-movement-yellow tracking-wide uppercase">Products</h2>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {products.map((product, index) => (
                 <FeatureCard 

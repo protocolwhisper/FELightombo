@@ -6,7 +6,7 @@ export default function Navbar() {
     <nav className="flex items-center justify-between px-6 py-4 bg-black border-b border-gray-800">
       <div className="flex items-center gap-2">
         <Image 
-          src="/tombo.png" 
+          src="/tombo2.png" 
           alt="Lightombo Logo" 
           width={32} 
           height={32} 
