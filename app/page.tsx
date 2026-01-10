@@ -1,8 +1,8 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
 import FunButton from "@/components/FunButton";
+import ClientNavbar from "@/components/ClientNavbar";
 
 export default function Home() {
   const products = [
@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-movement-yellow selection:text-black">
-      <Navbar />
+      <ClientNavbar />
       
       <main>
         <Hero />
