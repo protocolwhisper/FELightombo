@@ -1,8 +1,12 @@
+"use client";
+
 import Hero from "@/components/Hero";
 import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
-import FunButton from "@/components/FunButton";
 import ClientNavbar from "@/components/ClientNavbar";
+import AsciiBackground from "@/components/AsciiBackground";
+import FloatingBlocks from "@/components/FloatingBlocks";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const products = [
@@ -29,62 +33,106 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-movement-yellow selection:text-black">
+    <div className="min-h-screen bg-[#0a0a0a] text-terminal-green scanline">
+      <AsciiBackground />
+      <FloatingBlocks />
       <ClientNavbar />
       
-      <main>
+      <main className="relative z-20 pb-20">
         <Hero />
         
-        <section className="px-6 py-20 bg-black">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-4 mb-12">
-              <div className="h-px w-12 bg-movement-yellow"></div>
-              <h2 className="text-base font-semibold text-movement-yellow tracking-wide uppercase">Products</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {products.map((product, index) => (
-                <FeatureCard 
-                  key={index}
-                  title={product.title}
-                  description={product.description}
-                  features={product.features}
-                  linkText={product.linkText}
-                />
-              ))}
-            </div>
+        {/* Products Section */}
+        <section id="products" className="px-6 py-20 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <span className="text-terminal-green/40 text-sm tracking-[0.3em] uppercase">// PRODUCTS</span>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {products.map((product, index) => (
+              <FeatureCard 
+                key={index}
+                title={product.title}
+                description={product.description}
+                features={product.features}
+                linkText={product.linkText}
+              />
+            ))}
           </div>
         </section>
 
-        <section className="px-6 py-32 bg-gray-900/20 border-y border-gray-900 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Build without <span className="text-movement-yellow">frontiers</span>
+        {/* Features Section */}
+        <section className="px-6 py-20 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-terminal-green text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              Build without <span className="opacity-60">frontiers</span>
             </h2>
-            <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+            <p className="text-terminal-green/40 text-sm max-w-xl mx-auto">
               Lightombo gives you the tools to build anything, anywhere, without limits.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16 text-left">
-              <div>
-                <h3 className="text-xl font-bold text-white mb-3">Real-time transaction streams</h3>
-                <p className="text-gray-400">Listen to the Movement blockchain as transactions are processed. Get instant access to transaction data as it happens, powered by our hosted stream service.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-3">Labs-hosted infrastructure</h3>
-                <p className="text-gray-400">Skip the complexity of running your own nodes. Access our production-ready transaction stream API and focus on building, not infrastructure management.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-3">Deploy your own instance</h3>
-                <p className="text-gray-400">Need full control? Deploy the transaction stream service yourself with our open-source implementation. Complete documentation included.</p>
-              </div>
-            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Real-time streams",
+                description: "Listen to the Movement blockchain as transactions are processed. Get instant access to transaction data."
+              },
+              {
+                title: "Labs-hosted infra",
+                description: "Skip the complexity of running your own nodes. Access our production-ready transaction stream API."
+              },
+              {
+                title: "Self-deploy",
+                description: "Need full control? Deploy the transaction stream service yourself with our open-source implementation."
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="border border-terminal-green/20 p-6 hover:border-terminal-green/40 transition-colors bg-black/30"
+              >
+                <div className="text-terminal-green/40 text-xs mb-3">0{index + 1}</div>
+                <h3 className="text-terminal-green text-lg font-bold mb-3">{feature.title}</h3>
+                <p className="text-terminal-green/50 text-sm leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
           </div>
         </section>
 
+        {/* CTA Section */}
         <section className="px-6 py-32 text-center">
-           <h2 className="text-4xl md:text-6xl font-bold mb-8">What will you build?</h2>
-           <FunButton />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-terminal-green text-2xl md:text-4xl font-bold tracking-tight mb-8">
+              What will you build?
+            </h2>
+            <a
+              href="/dashboard"
+              className="inline-block border border-terminal-green text-terminal-green px-8 py-3 text-sm tracking-widest uppercase hover:bg-terminal-green hover:text-black transition-all duration-300"
+            >
+              START BUILDING →
+            </a>
+          </motion.div>
         </section>
-
       </main>
 
       <Footer />

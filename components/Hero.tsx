@@ -1,40 +1,61 @@
-import CodeWindow from "./CodeWindow";
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="px-6 py-12 md:py-24 max-w-7xl mx-auto">
-      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-        
-        {/* Left Column: Text Content */}
-        <div className="flex-1 text-center lg:text-left">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
-            The essential toolkit for every{" "}
-            <br className="hidden lg:block" />
-            <span className="text-movement-yellow inline-block">move</span>{" "}
-            developer
+    <section className="relative min-h-screen flex items-center justify-center px-6 py-24">
+      {/* Center CTA */}
+      <div className="text-center z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h1 className="text-terminal-green text-xl md:text-2xl tracking-[0.3em] uppercase mb-8 glitch-hover">
+            LIGHTOMBO
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-2xl mx-auto lg:mx-0">
-            Lightombo offers tools for developers to create, test, and launch dApps on the Movement network. Generate API keys, access MoveVM data, and streamline user onboarding.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <button className="bg-movement-yellow text-black px-8 py-3 rounded-md font-bold text-lg hover:bg-yellow-400 transition-colors w-full sm:w-auto shadow-[0_0_20px_rgba(250,255,0,0.3)] hover:shadow-[0_0_30px_rgba(250,255,0,0.5)]">
-              Start Building
-            </button>
-            <button className="bg-transparent border border-gray-700 text-white px-8 py-3 rounded-md font-bold text-lg hover:border-white transition-colors w-full sm:w-auto">
-              Read Docs
-            </button>
-          </div>
-        </div>
+        </motion.div>
 
-        {/* Right Column: Code Animation */}
-        <div className="flex-1 w-full max-w-lg lg:max-w-none perspective-[1000px]">
-          <div className="relative">
-            {/* Glow effect behind the window */}
-            <div className="absolute left-0 top-0 right-0 bottom-0 bg-gradient-to-r from-movement-yellow/20 via-movement-yellow/10 to-movement-yellow/20 blur-3xl opacity-30 rounded-full" />
-            <CodeWindow />
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Link
+            href="/login"
+            className="inline-block border-2 border-terminal-green text-terminal-green px-12 py-4 text-lg tracking-[0.2em] uppercase hover:bg-terminal-green hover:text-black transition-all duration-300"
+          >
+            CLICK TO CONNECT
+          </Link>
+        </motion.div>
 
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-terminal-green/50 text-sm tracking-wider mt-8 max-w-md mx-auto"
+        >
+          the essential toolkit for every move developer
+        </motion.p>
+      </div>
+
+      {/* Decorative +++ patterns */}
+      <div className="absolute right-[20%] top-20 text-terminal-green/60 text-2xl tracking-widest">
+        +++
+      </div>
+      <div className="absolute right-[18%] top-40 text-terminal-green/60 text-2xl tracking-widest">
+        +++
+      </div>
+      <div className="absolute right-[22%] top-60 text-terminal-green/60 text-2xl tracking-widest">
+        +++
+      </div>
+      <div className="absolute right-[20%] bottom-40 text-terminal-green/60 text-2xl tracking-widest">
+        +++
+      </div>
+      <div className="absolute right-[18%] bottom-20 text-terminal-green/60 text-2xl tracking-widest">
+        +++
       </div>
     </section>
   );

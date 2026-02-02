@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 interface StreamEvent {
   type: string;
@@ -137,7 +138,6 @@ export default function DashboardContent() {
     URL.revokeObjectURL(url);
   }, [events]);
 
-  // Check if user already paid
   useEffect(() => {
     if (account?.address) {
       const alreadyPaid = isAddressSubscribed(account.address.toString());
@@ -244,21 +244,21 @@ export default function DashboardContent() {
 
   const getEventColor = (type: string) => {
     switch (type) {
-      case "swap": return "border-l-purple-500 bg-purple-500/10";
-      case "transfer": return "border-l-green-500 bg-green-500/10";
-      case "mint": return "border-l-blue-500 bg-blue-500/10";
-      case "burn": return "border-l-red-500 bg-red-500/10";
-      default: return "border-l-gray-500 bg-gray-500/10";
+      case "swap": return "border-l-purple-400";
+      case "transfer": return "border-l-terminal-green";
+      case "mint": return "border-l-blue-400";
+      case "burn": return "border-l-red-400";
+      default: return "border-l-terminal-green/40";
     }
   };
 
   const getEventIcon = (type: string) => {
     switch (type) {
-      case "swap": return "↔";
-      case "transfer": return "→";
+      case "swap": return "~";
+      case "transfer": return ">";
       case "mint": return "+";
-      case "burn": return "−";
-      default: return "•";
+      case "burn": return "-";
+      default: return "*";
     }
   };
 
@@ -268,7 +268,7 @@ export default function DashboardContent() {
   };
 
   const shortenAddress = (address?: string) => {
-    if (!address) return "Unknown";
+    if (!address) return "unknown";
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
@@ -278,41 +278,47 @@ export default function DashboardContent() {
 
   return (
     <>
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Event Stream Dashboard</h1>
-        <p className="text-gray-400">
-          Connected as <span className="text-movement-yellow font-mono">{shortenAddress(account?.address.toString())}</span>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="mb-8"
+      >
+        <h1 className="text-terminal-green text-2xl tracking-tight mb-2">// event_stream</h1>
+        <p className="text-terminal-green/50 text-sm">
+          connected: <span className="text-terminal-green font-mono">{shortenAddress(account?.address.toString())}</span>
         </p>
-      </div>
+      </motion.div>
 
       {!isSubscribed ? (
-        <div className="max-w-lg mx-auto mt-20">
-          <div className="border border-gray-800 bg-gray-900/50 rounded-xl p-8 text-center">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-movement-yellow/20 flex items-center justify-center">
-              <span className="text-4xl text-movement-yellow">*</span>
-            </div>
-            <h2 className="text-2xl font-bold mb-4">Unlock Event Streaming</h2>
-            <p className="text-gray-400 mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-lg mx-auto mt-20"
+        >
+          <div className="border border-terminal-green/30 bg-black/50 p-8 text-center">
+            <div className="text-4xl text-terminal-green mb-6">+++</div>
+            <h2 className="text-terminal-green text-xl mb-4">// unlock_access</h2>
+            <p className="text-terminal-green/50 text-sm mb-6">
               Sign a message to verify your wallet and access real-time 
-              transaction event streaming for any contract address.
+              transaction event streaming.
             </p>
-            <ul className="text-left text-gray-400 mb-8 space-y-2">
+            <ul className="text-left text-terminal-green/50 mb-8 space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <span className="text-movement-yellow">-</span> Real-time decoded events
+                <span className="text-terminal-green">+</span> Real-time decoded events
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-movement-yellow">-</span> DEX swap detection
+                <span className="text-terminal-green">+</span> DEX swap detection
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-movement-yellow">-</span> Transfer & mint tracking
+                <span className="text-terminal-green">+</span> Transfer & mint tracking
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-movement-yellow">-</span> Filter by contract address
+                <span className="text-terminal-green">+</span> Filter by contract address
               </li>
             </ul>
             
             {error && (
-              <div className="bg-red-500/20 border border-red-500 text-red-400 px-4 py-2 rounded-md mb-4">
+              <div className="border border-red-400/50 text-red-400 px-4 py-2 mb-4 text-sm">
                 {error}
               </div>
             )}
@@ -320,201 +326,187 @@ export default function DashboardContent() {
             <button
               onClick={handleSign}
               disabled={isSigning}
-              className="w-full bg-movement-yellow text-black px-8 py-4 rounded-md font-bold text-lg hover:bg-yellow-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full border border-terminal-green text-terminal-green px-8 py-4 hover:bg-terminal-green hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed tracking-wider"
             >
-              {isSigning ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  Signing...
-                </span>
-              ) : (
-                "Sign to Access"
-              )}
+              {isSigning ? "SIGNING..." : "SIGN TO ACCESS →"}
             </button>
           </div>
-        </div>
+        </motion.div>
       ) : (
         <div className="space-y-6">
-          <div className="border border-gray-800 bg-gray-900/50 rounded-xl p-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1">
-                <label className="block text-sm text-gray-400 mb-2">
-                  Contract Address <span className="text-gray-500 text-xs">(optional - leave empty for all events)</span>
-                </label>
-                <input
-                  type="text"
-                  value={contractAddress}
-                  onChange={(e) => setContractAddress(e.target.value)}
-                  placeholder="0x... (leave empty to see all events)"
-                  className="w-full bg-black border border-gray-700 rounded-md px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-movement-yellow transition-colors"
-                  disabled={connectionStatus === "connected"}
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Backend URL: {BACKEND_URL}
-                </p>
-              </div>
-              <div className="flex items-end gap-2">
-                {connectionStatus === "connected" ? (
-                  <button
-                    onClick={disconnectWebSocket}
-                    className="bg-red-500/20 text-red-400 border border-red-500 px-6 py-3 rounded-md font-semibold hover:bg-red-500/30 transition-colors"
-                  >
-                    Disconnect
-                  </button>
-                ) : (
-                  <button
-                    onClick={connectWebSocket}
-                    disabled={connectionStatus === "connecting"}
-                    className="bg-movement-yellow text-black px-6 py-3 rounded-md font-semibold hover:bg-yellow-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {connectionStatus === "connecting" ? "Connecting..." : "Start Streaming"}
-                  </button>
-                )}
-              </div>
-            </div>
-            
-            {error && (
-              <div className="mt-4 bg-red-500/20 border border-red-500 text-red-400 px-4 py-2 rounded-md">
-                {error}
-              </div>
-            )}
-            
-            <div className="mt-4 flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${
-                connectionStatus === "connected" ? "bg-green-500" :
-                connectionStatus === "connecting" ? "bg-yellow-500 animate-pulse" :
-                "bg-gray-500"
+          {/* Connection Panel */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="border border-terminal-green/30 bg-black/50"
+          >
+            <div className="border-b border-terminal-green/30 px-4 py-2 flex items-center justify-between">
+              <span className="text-terminal-green/60 text-xs">// connection</span>
+              <div className={`w-2 h-2 ${
+                connectionStatus === "connected" ? "bg-terminal-green" :
+                connectionStatus === "connecting" ? "bg-terminal-green/50 animate-pulse" :
+                "bg-terminal-green/20"
               }`} />
-              <span className="text-sm text-gray-400">
-                {connectionStatus === "connected" ? "Connected - Streaming events" :
-                 connectionStatus === "connecting" ? "Connecting..." :
-                 "Disconnected"}
-              </span>
             </div>
-          </div>
+            
+            <div className="p-6">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1">
+                  <label className="block text-xs text-terminal-green/50 mb-2">
+                    contract_address <span className="text-terminal-green/30">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={contractAddress}
+                    onChange={(e) => setContractAddress(e.target.value)}
+                    placeholder="0x..."
+                    className="w-full bg-transparent border border-terminal-green/30 px-4 py-3 text-terminal-green font-mono text-sm focus:outline-none focus:border-terminal-green transition-colors"
+                    disabled={connectionStatus === "connected"}
+                  />
+                </div>
+                <div className="flex items-end gap-2">
+                  {connectionStatus === "connected" ? (
+                    <button
+                      onClick={disconnectWebSocket}
+                      className="border border-red-400/50 text-red-400 px-6 py-3 hover:bg-red-400/10 transition-colors text-sm"
+                    >
+                      DISCONNECT
+                    </button>
+                  ) : (
+                    <button
+                      onClick={connectWebSocket}
+                      disabled={connectionStatus === "connecting"}
+                      className="border border-terminal-green text-terminal-green px-6 py-3 hover:bg-terminal-green hover:text-black transition-all disabled:opacity-50 text-sm"
+                    >
+                      {connectionStatus === "connecting" ? "..." : "CONNECT →"}
+                    </button>
+                  )}
+                </div>
+              </div>
+              
+              {error && (
+                <div className="mt-4 border border-red-400/30 text-red-400 px-4 py-2 text-sm">
+                  {error}
+                </div>
+              )}
+              
+              <div className="mt-4 flex items-center gap-2 text-xs text-terminal-green/50">
+                <span>{connectionStatus === "connected" ? "streaming" : connectionStatus === "connecting" ? "connecting" : "idle"}</span>
+                <span className="text-terminal-green/30">|</span>
+                <span className="text-terminal-green/30">{BACKEND_URL}</span>
+              </div>
+            </div>
+          </motion.div>
 
-          {/* Metrics Cards */}
+          {/* Metrics */}
           {events.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              <div className="border border-gray-800 bg-gray-900/50 rounded-xl p-4">
-                <p className="text-xs text-gray-500 uppercase tracking-wide">Total Events</p>
-                <p className="text-2xl font-bold text-white mt-1">{metrics.total}</p>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+            >
+              <div className="border border-terminal-green/30 p-4">
+                <p className="text-xs text-terminal-green/50 uppercase">total</p>
+                <p className="text-2xl text-terminal-green mt-1">{metrics.total}</p>
               </div>
-              <div className="border border-purple-500/30 bg-purple-500/10 rounded-xl p-4">
-                <p className="text-xs text-purple-400 uppercase tracking-wide">Swaps</p>
-                <p className="text-2xl font-bold text-white mt-1">{metrics.swaps}</p>
-                <p className="text-xs text-gray-500">{metrics.total > 0 ? ((metrics.swaps / metrics.total) * 100).toFixed(1) : 0}%</p>
+              <div className="border border-purple-400/30 p-4">
+                <p className="text-xs text-purple-400/60 uppercase">swaps</p>
+                <p className="text-2xl text-purple-400 mt-1">{metrics.swaps}</p>
               </div>
-              <div className="border border-green-500/30 bg-green-500/10 rounded-xl p-4">
-                <p className="text-xs text-green-400 uppercase tracking-wide">Transfers</p>
-                <p className="text-2xl font-bold text-white mt-1">{metrics.transfers}</p>
-                <p className="text-xs text-gray-500">{metrics.total > 0 ? ((metrics.transfers / metrics.total) * 100).toFixed(1) : 0}%</p>
+              <div className="border border-terminal-green/30 p-4">
+                <p className="text-xs text-terminal-green/50 uppercase">transfers</p>
+                <p className="text-2xl text-terminal-green mt-1">{metrics.transfers}</p>
               </div>
-              <div className="border border-blue-500/30 bg-blue-500/10 rounded-xl p-4">
-                <p className="text-xs text-blue-400 uppercase tracking-wide">Mints</p>
-                <p className="text-2xl font-bold text-white mt-1">{metrics.mints}</p>
-                <p className="text-xs text-gray-500">{metrics.total > 0 ? ((metrics.mints / metrics.total) * 100).toFixed(1) : 0}%</p>
+              <div className="border border-blue-400/30 p-4">
+                <p className="text-xs text-blue-400/60 uppercase">mints</p>
+                <p className="text-2xl text-blue-400 mt-1">{metrics.mints}</p>
               </div>
-              <div className="border border-red-500/30 bg-red-500/10 rounded-xl p-4">
-                <p className="text-xs text-red-400 uppercase tracking-wide">Burns</p>
-                <p className="text-2xl font-bold text-white mt-1">{metrics.burns}</p>
-                <p className="text-xs text-gray-500">{metrics.total > 0 ? ((metrics.burns / metrics.total) * 100).toFixed(1) : 0}%</p>
+              <div className="border border-red-400/30 p-4">
+                <p className="text-xs text-red-400/60 uppercase">burns</p>
+                <p className="text-2xl text-red-400 mt-1">{metrics.burns}</p>
               </div>
-              <div className="border border-movement-yellow/30 bg-movement-yellow/10 rounded-xl p-4">
-                <p className="text-xs text-movement-yellow uppercase tracking-wide">Unique Accounts</p>
-                <p className="text-2xl font-bold text-white mt-1">{metrics.uniqueAccounts.size}</p>
+              <div className="border border-terminal-green/40 p-4">
+                <p className="text-xs text-terminal-green/50 uppercase">unique</p>
+                <p className="text-2xl text-terminal-green mt-1">{metrics.uniqueAccounts.size}</p>
               </div>
-            </div>
+            </motion.div>
           )}
 
-          {/* Volume & Session Info */}
+          {/* Volume & Actions */}
           {events.length > 0 && (
-            <div className="flex flex-wrap items-center justify-between gap-4 border border-gray-800 bg-gray-900/50 rounded-xl p-4">
-              <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center justify-between gap-4 border border-terminal-green/30 p-4">
+              <div className="flex items-center gap-6 text-sm">
                 <div>
-                  <p className="text-xs text-gray-500">Total Volume</p>
-                  <p className="text-lg font-mono text-white">{(metrics.totalVolume / 100000000).toLocaleString(undefined, { maximumFractionDigits: 2 })} MOVE</p>
+                  <span className="text-terminal-green/50">volume:</span>
+                  <span className="text-terminal-green ml-2 font-mono">
+                    {(metrics.totalVolume / 100000000).toLocaleString(undefined, { maximumFractionDigits: 2 })} MOVE
+                  </span>
                 </div>
                 {sessionStart && (
                   <div>
-                    <p className="text-xs text-gray-500">Session Started</p>
-                    <p className="text-sm text-gray-400">{sessionStart.toLocaleTimeString()}</p>
+                    <span className="text-terminal-green/50">session:</span>
+                    <span className="text-terminal-green/70 ml-2">{sessionStart.toLocaleTimeString()}</span>
                   </div>
                 )}
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setEvents([])}
-                  className="text-sm text-gray-400 hover:text-white px-3 py-2 border border-gray-700 rounded-md hover:border-gray-600 transition-colors"
+                  className="text-xs text-terminal-green/50 hover:text-terminal-green px-3 py-2 border border-terminal-green/20 hover:border-terminal-green/50 transition-colors"
                 >
-                  Clear
+                  CLEAR
                 </button>
                 <button
                   onClick={exportToCSV}
-                  className="text-sm bg-movement-yellow text-black px-4 py-2 rounded-md font-semibold hover:bg-yellow-400 transition-colors"
+                  className="text-xs text-black bg-terminal-green px-4 py-2 hover:bg-terminal-green/80 transition-colors"
                 >
-                  Export CSV
+                  EXPORT CSV
                 </button>
               </div>
             </div>
           )}
 
-          <div className="border border-gray-800 bg-gray-900/50 rounded-xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-800 flex items-center justify-between">
-              <h2 className="text-lg font-semibold">Live Events</h2>
-              <span className="text-sm text-gray-400">{events.length} / 100 events</span>
+          {/* Events List */}
+          <div className="border border-terminal-green/30">
+            <div className="px-4 py-3 border-b border-terminal-green/30 flex items-center justify-between">
+              <span className="text-terminal-green/60 text-xs">// live_events</span>
+              <span className="text-xs text-terminal-green/40">{events.length}/100</span>
             </div>
             
-            <div className="max-h-[600px] overflow-y-auto">
+            <div className="max-h-[500px] overflow-y-auto">
               {events.length === 0 ? (
-                <div className="px-6 py-12 text-center text-gray-500">
+                <div className="px-6 py-12 text-center text-terminal-green/40 text-sm">
                   {connectionStatus === "connected" 
-                    ? "Waiting for events..."
-                    : "Connect to start receiving events"}
+                    ? "waiting for events..."
+                    : "connect to start streaming"}
                 </div>
               ) : (
-                <div className="divide-y divide-gray-800">
+                <div className="divide-y divide-terminal-green/10">
                   {events.map((event, index) => (
                     <div
                       key={`${event.cursor}-${index}`}
-                      className={`px-6 py-4 border-l-4 ${getEventColor(event.type)}`}
+                      className={`px-4 py-3 border-l-2 ${getEventColor(event.type)} bg-black/30`}
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{getEventIcon(event.type)}</span>
+                          <span className="text-terminal-green text-lg font-mono">{getEventIcon(event.type)}</span>
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold capitalize">{event.type}</span>
-                              <span className="text-xs text-gray-500 font-mono">v{event.cursor}</span>
+                              <span className="text-terminal-green text-sm">{event.type}</span>
+                              <span className="text-xs text-terminal-green/40 font-mono">v{event.cursor}</span>
                             </div>
                             
                             {event.type === "swap" && (
-                              <p className="text-sm text-gray-400 mt-1">
-                                <span className="text-white">{formatAmount(event.data.amount_in)}</span>
-                                {" → "}
-                                <span className="text-white">{formatAmount(event.data.amount_out)}</span>
-                                {event.data.token_in && (
-                                  <span className="text-gray-500 ml-2 text-xs">
-                                    {event.data.token_in.split("::").pop()}
-                                  </span>
-                                )}
-                                <span className="text-gray-500 ml-2 text-xs">by {shortenAddress(event.data.account)}</span>
+                              <p className="text-xs text-terminal-green/50 mt-1 font-mono">
+                                {formatAmount(event.data.amount_in)} → {formatAmount(event.data.amount_out)}
+                                <span className="text-terminal-green/30 ml-2">by {shortenAddress(event.data.account)}</span>
                               </p>
                             )}
                             
                             {event.type === "transfer" && (
-                              <p className="text-sm text-gray-400 mt-1">
-                                <span className="text-white">{formatAmount(event.data.amount)}</span>
-                                <span className="text-gray-500"> {shortenAddress(event.data.from)} → {shortenAddress(event.data.to)}</span>
-                              </p>
-                            )}
-                            
-                            {event.type === "account_activity" && (
-                              <p className="text-sm text-gray-400 mt-1 font-mono text-xs">
-                                {event.data.activity_type?.split("::").slice(-1)[0]}
+                              <p className="text-xs text-terminal-green/50 mt-1 font-mono">
+                                {formatAmount(event.data.amount)}
+                                <span className="text-terminal-green/30 ml-2">{shortenAddress(event.data.from)} → {shortenAddress(event.data.to)}</span>
                               </p>
                             )}
                           </div>
@@ -525,7 +517,7 @@ export default function DashboardContent() {
                             href={`https://explorer.movementlabs.xyz/txn/${event.data.hash}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-movement-yellow hover:underline font-mono"
+                            className="text-xs text-terminal-green/50 hover:text-terminal-green font-mono transition-colors"
                           >
                             {shortenAddress(event.data.hash)}
                           </a>
@@ -542,4 +534,3 @@ export default function DashboardContent() {
     </>
   );
 }
-
