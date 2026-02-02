@@ -13,7 +13,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-accent-yellow text-xl md:text-2xl tracking-[0.3em] uppercase mb-8 glitch-hover">
+          <h1 className="text-accent-yellow text-2xl md:text-3xl tracking-[0.3em] uppercase mb-8 glitch-hover">
             LIGHTOMBO
           </h1>
         </motion.div>
@@ -25,7 +25,7 @@ export default function Hero() {
         >
           <Link
             href="/dashboard"
-            className="inline-block border-2 border-accent-yellow text-accent-yellow px-12 py-4 text-lg tracking-[0.2em] uppercase hover:bg-accent-yellow hover:text-black transition-all duration-300"
+            className="inline-block border-2 border-accent-yellow text-accent-yellow px-14 py-5 text-xl tracking-[0.2em] uppercase hover:bg-accent-yellow hover:text-black transition-all duration-300"
           >
             GO TO APP
           </Link>

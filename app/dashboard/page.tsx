@@ -20,7 +20,7 @@ const DashboardContent = dynamic(
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-terminal-green scanline">
+    <div className="min-h-screen bg-[#0a0a0a] text-accent-yellow scanline">
       <AsciiBackground />
       <FloatingBlocks />
       <ClientNavbar />

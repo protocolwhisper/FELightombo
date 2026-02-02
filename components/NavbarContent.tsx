@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import StaticDog from './StaticDog';
 
 export default function NavbarContent() {
   const { account, connected, disconnect } = useWallet();
@@ -19,13 +20,16 @@ export default function NavbarContent() {
       {/* Top left brand */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-sm">
         <div className="flex items-center justify-between px-6 py-4">
-          <Link href="/" className="text-accent-yellow font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
-            LIGHTOMBO
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="text-accent-yellow font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+              LIGHTOMBO
+            </Link>
+            <StaticDog />
+          </div>
           
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="bg-accent-yellow text-black px-4 py-1.5 text-sm font-bold hover:bg-accent-yellow/80 transition-colors"
+            className="border-2 border-accent-yellow bg-transparent text-accent-yellow px-5 py-2 text-sm font-bold hover:bg-accent-yellow hover:text-black transition-all"
           >
             {menuOpen ? '×' : 'MENU'}
           </button>

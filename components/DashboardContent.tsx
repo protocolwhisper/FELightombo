@@ -245,10 +245,10 @@ export default function DashboardContent() {
   const getEventColor = (type: string) => {
     switch (type) {
       case "swap": return "border-l-purple-400";
-      case "transfer": return "border-l-terminal-green";
+      case "transfer": return "border-l-accent-yellow";
       case "mint": return "border-l-blue-400";
       case "burn": return "border-l-red-400";
-      default: return "border-l-terminal-green/40";
+      default: return "border-l-accent-yellow/40";
     }
   };
 
@@ -283,9 +283,9 @@ export default function DashboardContent() {
         animate={{ opacity: 1 }}
         className="mb-8"
       >
-        <h1 className="text-terminal-green text-2xl tracking-tight mb-2">// event_stream</h1>
-        <p className="text-terminal-green/50 text-sm">
-          connected: <span className="text-terminal-green font-mono">{shortenAddress(account?.address.toString())}</span>
+        <h1 className="text-accent-yellow text-2xl tracking-tight mb-2">// event_stream</h1>
+        <p className="text-accent-yellow/50 text-sm">
+          connected: <span className="text-accent-yellow font-mono">{shortenAddress(account?.address.toString())}</span>
         </p>
       </motion.div>
 
@@ -295,25 +295,25 @@ export default function DashboardContent() {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-lg mx-auto mt-20"
         >
-          <div className="border border-terminal-green/30 bg-black/50 p-8 text-center">
-            <div className="text-4xl text-terminal-green mb-6">+++</div>
-            <h2 className="text-terminal-green text-xl mb-4">// unlock_access</h2>
-            <p className="text-terminal-green/50 text-sm mb-6">
+          <div className="border-2 border-accent-yellow/50 bg-[#1a1400]/90 p-8 text-center">
+            <div className="text-4xl text-accent-yellow mb-6">+++</div>
+            <h2 className="text-accent-yellow text-xl mb-4">// unlock_access</h2>
+            <p className="text-accent-yellow/50 text-sm mb-6">
               Sign a message to verify your wallet and access real-time 
               transaction event streaming.
             </p>
-            <ul className="text-left text-terminal-green/50 mb-8 space-y-2 text-sm">
+            <ul className="text-left text-accent-yellow/50 mb-8 space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <span className="text-terminal-green">+</span> Real-time decoded events
+                <span className="text-accent-yellow">+</span> Real-time decoded events
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-terminal-green">+</span> DEX swap detection
+                <span className="text-accent-yellow">+</span> DEX swap detection
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-terminal-green">+</span> Transfer & mint tracking
+                <span className="text-accent-yellow">+</span> Transfer & mint tracking
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-terminal-green">+</span> Filter by contract address
+                <span className="text-accent-yellow">+</span> Filter by contract address
               </li>
             </ul>
             
@@ -326,7 +326,7 @@ export default function DashboardContent() {
             <button
               onClick={handleSign}
               disabled={isSigning}
-              className="w-full border border-terminal-green text-terminal-green px-8 py-4 hover:bg-terminal-green hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed tracking-wider"
+              className="w-full border-2 border-accent-yellow text-accent-yellow px-8 py-4 hover:bg-accent-yellow hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed tracking-wider"
             >
               {isSigning ? "SIGNING..." : "SIGN TO ACCESS →"}
             </button>
@@ -338,29 +338,29 @@ export default function DashboardContent() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="border-2 border-terminal-green/50 bg-[#0d1a0d]/90"
+            className="border-2 border-accent-yellow/50 bg-[#1a1400]/90"
           >
-            <div className="border-b-2 border-terminal-green/50 bg-terminal-green/10 px-4 py-3 flex items-center justify-between">
-              <span className="text-terminal-green font-bold text-sm">// connection</span>
+            <div className="border-b-2 border-accent-yellow/50 bg-accent-yellow/10 px-4 py-3 flex items-center justify-between">
+              <span className="text-accent-yellow font-bold text-sm">// connection</span>
               <div className={`w-3 h-3 ${
-                connectionStatus === "connected" ? "bg-terminal-green" :
-                connectionStatus === "connecting" ? "bg-terminal-green/50 animate-pulse" :
-                "bg-terminal-green/30"
+                connectionStatus === "connected" ? "bg-accent-yellow" :
+                connectionStatus === "connecting" ? "bg-accent-yellow/50 animate-pulse" :
+                "bg-accent-yellow/30"
               }`} />
             </div>
             
-            <div className="p-6 bg-[#0a120a]">
+            <div className="p-6 bg-[#120e00]">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1">
-                  <label className="block text-xs text-terminal-green/50 mb-2">
-                    contract_address <span className="text-terminal-green/30">(optional)</span>
+                  <label className="block text-xs text-accent-yellow/50 mb-2">
+                    contract_address <span className="text-accent-yellow/30">(optional)</span>
                   </label>
                   <input
                     type="text"
                     value={contractAddress}
                     onChange={(e) => setContractAddress(e.target.value)}
                     placeholder="0x..."
-                    className="w-full bg-transparent border border-terminal-green/30 px-4 py-3 text-terminal-green font-mono text-sm focus:outline-none focus:border-terminal-green transition-colors"
+                    className="w-full bg-transparent border border-accent-yellow/30 px-4 py-3 text-accent-yellow font-mono text-sm focus:outline-none focus:border-accent-yellow transition-colors"
                     disabled={connectionStatus === "connected"}
                   />
                 </div>
@@ -376,7 +376,7 @@ export default function DashboardContent() {
                     <button
                       onClick={connectWebSocket}
                       disabled={connectionStatus === "connecting"}
-                      className="border border-terminal-green text-terminal-green px-6 py-3 hover:bg-terminal-green hover:text-black transition-all disabled:opacity-50 text-sm"
+                      className="border-2 border-accent-yellow text-accent-yellow px-6 py-3 hover:bg-accent-yellow hover:text-black transition-all disabled:opacity-50 text-sm"
                     >
                       {connectionStatus === "connecting" ? "..." : "CONNECT →"}
                     </button>
@@ -390,10 +390,10 @@ export default function DashboardContent() {
                 </div>
               )}
               
-              <div className="mt-4 flex items-center gap-2 text-xs text-terminal-green/50">
+              <div className="mt-4 flex items-center gap-2 text-xs text-accent-yellow/50">
                 <span>{connectionStatus === "connected" ? "streaming" : connectionStatus === "connecting" ? "connecting" : "idle"}</span>
-                <span className="text-terminal-green/30">|</span>
-                <span className="text-terminal-green/30">{BACKEND_URL}</span>
+                <span className="text-accent-yellow/30">|</span>
+                <span className="text-accent-yellow/30">{BACKEND_URL}</span>
               </div>
             </div>
           </motion.div>
@@ -405,60 +405,60 @@ export default function DashboardContent() {
               animate={{ opacity: 1 }}
               className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
-              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
-                <p className="text-xs text-terminal-green/70 uppercase font-bold">total</p>
-                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.total}</p>
+              <div className="border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
+                <p className="text-xs text-accent-yellow/70 uppercase font-bold">total</p>
+                <p className="text-2xl text-accent-yellow mt-1 font-bold">{metrics.total}</p>
               </div>
-              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
-                <p className="text-xs text-terminal-green/70 uppercase font-bold">swaps</p>
-                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.swaps}</p>
+              <div className="border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
+                <p className="text-xs text-accent-yellow/70 uppercase font-bold">swaps</p>
+                <p className="text-2xl text-accent-yellow mt-1 font-bold">{metrics.swaps}</p>
               </div>
-              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
-                <p className="text-xs text-terminal-green/70 uppercase font-bold">transfers</p>
-                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.transfers}</p>
+              <div className="border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
+                <p className="text-xs text-accent-yellow/70 uppercase font-bold">transfers</p>
+                <p className="text-2xl text-accent-yellow mt-1 font-bold">{metrics.transfers}</p>
               </div>
-              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
-                <p className="text-xs text-terminal-green/70 uppercase font-bold">mints</p>
-                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.mints}</p>
+              <div className="border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
+                <p className="text-xs text-accent-yellow/70 uppercase font-bold">mints</p>
+                <p className="text-2xl text-accent-yellow mt-1 font-bold">{metrics.mints}</p>
               </div>
-              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
-                <p className="text-xs text-terminal-green/70 uppercase font-bold">burns</p>
-                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.burns}</p>
+              <div className="border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
+                <p className="text-xs text-accent-yellow/70 uppercase font-bold">burns</p>
+                <p className="text-2xl text-accent-yellow mt-1 font-bold">{metrics.burns}</p>
               </div>
-              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
-                <p className="text-xs text-terminal-green/70 uppercase font-bold">unique</p>
-                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.uniqueAccounts.size}</p>
+              <div className="border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
+                <p className="text-xs text-accent-yellow/70 uppercase font-bold">unique</p>
+                <p className="text-2xl text-accent-yellow mt-1 font-bold">{metrics.uniqueAccounts.size}</p>
               </div>
             </motion.div>
           )}
 
           {/* Volume & Actions */}
           {events.length > 0 && (
-            <div className="flex flex-wrap items-center justify-between gap-4 border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-2 border-accent-yellow/50 bg-[#1a1400] p-4">
               <div className="flex items-center gap-6 text-sm">
                 <div>
-                  <span className="text-terminal-green/50">volume:</span>
-                  <span className="text-terminal-green ml-2 font-mono">
+                  <span className="text-accent-yellow/50">volume:</span>
+                  <span className="text-accent-yellow ml-2 font-mono">
                     {(metrics.totalVolume / 100000000).toLocaleString(undefined, { maximumFractionDigits: 2 })} MOVE
                   </span>
                 </div>
                 {sessionStart && (
                   <div>
-                    <span className="text-terminal-green/50">session:</span>
-                    <span className="text-terminal-green/70 ml-2">{sessionStart.toLocaleTimeString()}</span>
+                    <span className="text-accent-yellow/50">session:</span>
+                    <span className="text-accent-yellow/70 ml-2">{sessionStart.toLocaleTimeString()}</span>
                   </div>
                 )}
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setEvents([])}
-                  className="text-xs text-terminal-green/50 hover:text-terminal-green px-3 py-2 border border-terminal-green/20 hover:border-terminal-green/50 transition-colors"
+                  className="text-xs text-accent-yellow/50 hover:text-accent-yellow px-3 py-2 border border-accent-yellow/20 hover:border-accent-yellow/50 transition-colors"
                 >
                   CLEAR
                 </button>
                 <button
                   onClick={exportToCSV}
-                  className="text-xs text-black bg-terminal-green px-4 py-2 hover:bg-terminal-green/80 transition-colors"
+                  className="text-xs text-black bg-accent-yellow px-4 py-2 hover:bg-accent-yellow/80 transition-colors"
                 >
                   EXPORT CSV
                 </button>
@@ -467,46 +467,46 @@ export default function DashboardContent() {
           )}
 
           {/* Events List */}
-          <div className="border-2 border-terminal-green/50 bg-[#0d1a0d]/90">
-            <div className="px-4 py-3 border-b-2 border-terminal-green/50 bg-terminal-green/10 flex items-center justify-between">
-              <span className="text-terminal-green font-bold text-sm">// live_events</span>
-              <span className="text-xs text-terminal-green">{events.length}/100</span>
+          <div className="border-2 border-accent-yellow/50 bg-[#1a1400]/90">
+            <div className="px-4 py-3 border-b-2 border-accent-yellow/50 bg-accent-yellow/10 flex items-center justify-between">
+              <span className="text-accent-yellow font-bold text-sm">// live_events</span>
+              <span className="text-xs text-accent-yellow">{events.length}/100</span>
             </div>
             
-            <div className="max-h-[500px] overflow-y-auto bg-[#0a120a]">
+            <div className="max-h-[500px] overflow-y-auto bg-[#120e00]">
               {events.length === 0 ? (
-                <div className="px-6 py-12 text-center text-terminal-green/60 text-sm">
+                <div className="px-6 py-12 text-center text-accent-yellow/60 text-sm">
                   {connectionStatus === "connected" 
                     ? "waiting for events..."
                     : "connect to start streaming"}
                 </div>
               ) : (
-                <div className="divide-y divide-terminal-green/20">
+                <div className="divide-y divide-accent-yellow/20">
                   {events.map((event, index) => (
                     <div
                       key={`${event.cursor}-${index}`}
-                      className={`px-4 py-3 border-l-4 ${getEventColor(event.type)} bg-[#0a120a] hover:bg-terminal-green/5 transition-colors`}
+                      className={`px-4 py-3 border-l-4 ${getEventColor(event.type)} bg-[#120e00] hover:bg-accent-yellow/5 transition-colors`}
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-terminal-green text-lg font-mono">{getEventIcon(event.type)}</span>
+                          <span className="text-accent-yellow text-lg font-mono">{getEventIcon(event.type)}</span>
                           <div>
                             <div className="flex items-center gap-2">
-                              <span className="text-terminal-green text-sm">{event.type}</span>
-                              <span className="text-xs text-terminal-green/40 font-mono">v{event.cursor}</span>
+                              <span className="text-accent-yellow text-sm">{event.type}</span>
+                              <span className="text-xs text-accent-yellow/40 font-mono">v{event.cursor}</span>
                             </div>
                             
                             {event.type === "swap" && (
-                              <p className="text-xs text-terminal-green/50 mt-1 font-mono">
+                              <p className="text-xs text-accent-yellow/50 mt-1 font-mono">
                                 {formatAmount(event.data.amount_in)} → {formatAmount(event.data.amount_out)}
-                                <span className="text-terminal-green/30 ml-2">by {shortenAddress(event.data.account)}</span>
+                                <span className="text-accent-yellow/30 ml-2">by {shortenAddress(event.data.account)}</span>
                               </p>
                             )}
                             
                             {event.type === "transfer" && (
-                              <p className="text-xs text-terminal-green/50 mt-1 font-mono">
+                              <p className="text-xs text-accent-yellow/50 mt-1 font-mono">
                                 {formatAmount(event.data.amount)}
-                                <span className="text-terminal-green/30 ml-2">{shortenAddress(event.data.from)} → {shortenAddress(event.data.to)}</span>
+                                <span className="text-accent-yellow/30 ml-2">{shortenAddress(event.data.from)} → {shortenAddress(event.data.to)}</span>
                               </p>
                             )}
                           </div>
@@ -517,7 +517,7 @@ export default function DashboardContent() {
                             href={`https://explorer.movementlabs.xyz/txn/${event.data.hash}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xs text-terminal-green/50 hover:text-terminal-green font-mono transition-colors"
+                            className="text-xs text-accent-yellow/50 hover:text-accent-yellow font-mono transition-colors"
                           >
                             {shortenAddress(event.data.hash)}
                           </a>

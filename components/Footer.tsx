@@ -1,11 +1,10 @@
 "use client";
 
 import Link from 'next/link';
-import PixelDog from './PixelDog';
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm">
+    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm border-t border-accent-yellow/20">
       {/* Status bar */}
       <div className="px-6 py-2 flex items-center justify-between text-xs text-accent-yellow/60">
         <div className="flex items-center gap-4">
@@ -33,8 +32,6 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* 8-bit pitbull */}
-          <PixelDog />
           <Link href="mailto:hello@lightombo.dev" className="hover:text-accent-yellow transition-colors underline">
             hello@lightombo.dev
           </Link>
