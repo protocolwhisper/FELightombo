@@ -61,6 +61,9 @@ export default function NavbarContent() {
               <Link href="/dashboard" onClick={() => setMenuOpen(false)} className="hover:opacity-60 transition-opacity">
                 DASHBOARD
               </Link>
+              <Link href="/billing" onClick={() => setMenuOpen(false)} className="hover:opacity-60 transition-opacity">
+                BILLING & QUOTES
+              </Link>
               <Link href="#" onClick={() => setMenuOpen(false)} className="hover:opacity-60 transition-opacity">
                 DOCS
               </Link>

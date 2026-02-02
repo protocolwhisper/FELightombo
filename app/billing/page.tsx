@@ -84,9 +84,6 @@ export default function Billing() {
             <h1 className="text-accent-yellow text-3xl md:text-4xl font-bold tracking-tight mb-4">
               Proposed LightTombo tiers
             </h1>
-            <p className="text-accent-yellow/60 text-sm tracking-wider uppercase">
-              (ready to ship)
-            </p>
           </motion.div>
 
           <div className="space-y-8">
