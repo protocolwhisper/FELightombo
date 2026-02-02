@@ -13,7 +13,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-terminal-green text-xl md:text-2xl tracking-[0.3em] uppercase mb-8 glitch-hover">
+          <h1 className="text-accent-yellow text-xl md:text-2xl tracking-[0.3em] uppercase mb-8 glitch-hover">
             LIGHTOMBO
           </h1>
         </motion.div>
@@ -24,10 +24,10 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Link
-            href="/login"
-            className="inline-block border-2 border-terminal-green text-terminal-green px-12 py-4 text-lg tracking-[0.2em] uppercase hover:bg-terminal-green hover:text-black transition-all duration-300"
+            href="/dashboard"
+            className="inline-block border-2 border-accent-yellow text-accent-yellow px-12 py-4 text-lg tracking-[0.2em] uppercase hover:bg-accent-yellow hover:text-black transition-all duration-300"
           >
-            CLICK TO CONNECT
+            GO TO APP
           </Link>
         </motion.div>
 
@@ -35,26 +35,26 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-terminal-green/50 text-sm tracking-wider mt-8 max-w-md mx-auto"
+          className="text-accent-yellow/50 text-sm tracking-wider mt-8 max-w-md mx-auto"
         >
-          the essential toolkit for every move developer
+          the essential toolkit for every <span className="text-accent-yellow font-bold underline decoration-2 underline-offset-4">move</span> developer
         </motion.p>
       </div>
 
       {/* Decorative +++ patterns */}
-      <div className="absolute right-[20%] top-20 text-terminal-green/60 text-2xl tracking-widest">
+      <div className="absolute right-[20%] top-20 text-accent-yellow/60 text-2xl tracking-widest">
         +++
       </div>
-      <div className="absolute right-[18%] top-40 text-terminal-green/60 text-2xl tracking-widest">
+      <div className="absolute right-[18%] top-40 text-accent-yellow/60 text-2xl tracking-widest">
         +++
       </div>
-      <div className="absolute right-[22%] top-60 text-terminal-green/60 text-2xl tracking-widest">
+      <div className="absolute right-[22%] top-60 text-accent-yellow/60 text-2xl tracking-widest">
         +++
       </div>
-      <div className="absolute right-[20%] bottom-40 text-terminal-green/60 text-2xl tracking-widest">
+      <div className="absolute right-[20%] bottom-40 text-accent-yellow/60 text-2xl tracking-widest">
         +++
       </div>
-      <div className="absolute right-[18%] bottom-20 text-terminal-green/60 text-2xl tracking-widest">
+      <div className="absolute right-[18%] bottom-20 text-accent-yellow/60 text-2xl tracking-widest">
         +++
       </div>
     </section>

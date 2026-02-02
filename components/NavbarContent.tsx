@@ -17,32 +17,21 @@ export default function NavbarContent() {
   return (
     <>
       {/* Top left brand */}
-      <div className="fixed top-4 left-6 z-50">
-        <Link href="/" className="text-terminal-green font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
-          LIGHTOMBO
-        </Link>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-sm">
+        <div className="flex items-center justify-between px-6 py-4">
+          <Link href="/" className="text-accent-yellow font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+            LIGHTOMBO
+          </Link>
+          
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="bg-accent-yellow text-black px-4 py-1.5 text-sm font-bold hover:bg-accent-yellow/80 transition-colors"
+          >
+            {menuOpen ? '×' : 'MENU'}
+          </button>
+        </div>
       </div>
 
-      {/* Vertical sidebar left */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-4">
-        <div className="w-px h-16 bg-terminal-green/30" />
-        <span className="text-terminal-green text-xs tracking-widest" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-          W.
-        </span>
-        <div className="w-px h-16 bg-terminal-green/30" />
-        <span className="text-terminal-green/60 text-xs tracking-widest" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-          Honors
-        </span>
-        <div className="w-px h-24 bg-terminal-green/30" />
-      </div>
-
-      {/* Menu button - top right */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="fixed top-4 right-6 z-50 bg-terminal-green text-black px-4 py-2 text-sm font-bold hover:bg-terminal-green/80 transition-colors"
-      >
-        {menuOpen ? '×' : 'MENU'}
-      </button>
 
       {/* Dropdown menu panel */}
       <AnimatePresence>
@@ -52,7 +41,7 @@ export default function NavbarContent() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 right-6 z-50 bg-terminal-green text-black p-6 min-w-[200px]"
+            className="fixed top-14 right-6 z-50 bg-accent-yellow text-black p-6 min-w-[200px]"
           >
             <button
               onClick={() => setMenuOpen(false)}

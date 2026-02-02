@@ -33,12 +33,12 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-terminal-green scanline">
+    <div className="min-h-screen bg-[#0a0a0a] text-accent-yellow scanline">
       <AsciiBackground />
       <FloatingBlocks />
       <ClientNavbar />
       
-      <main className="relative z-20 pb-20">
+      <main className="relative z-20 pb-20 pt-16">
         <Hero />
         
         {/* Products Section */}
@@ -50,7 +50,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <span className="text-terminal-green/40 text-sm tracking-[0.3em] uppercase">// PRODUCTS</span>
+            <span className="text-accent-yellow/40 text-sm tracking-[0.3em] uppercase">// PRODUCTS</span>
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -75,10 +75,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-terminal-green text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-accent-yellow text-3xl md:text-4xl font-bold tracking-tight mb-4">
               Build without <span className="opacity-60">frontiers</span>
             </h2>
-            <p className="text-terminal-green/40 text-sm max-w-xl mx-auto">
+            <p className="text-accent-yellow/40 text-sm max-w-xl mx-auto">
               Lightombo gives you the tools to build anything, anywhere, without limits.
             </p>
           </motion.div>
@@ -104,11 +104,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border border-terminal-green/20 p-6 hover:border-terminal-green/40 transition-colors bg-black/30"
+                className="border border-accent-yellow/20 p-6 hover:border-accent-yellow/40 transition-colors bg-black/30"
               >
-                <div className="text-terminal-green/40 text-xs mb-3">0{index + 1}</div>
-                <h3 className="text-terminal-green text-lg font-bold mb-3">{feature.title}</h3>
-                <p className="text-terminal-green/50 text-sm leading-relaxed">{feature.description}</p>
+                <div className="text-accent-yellow/40 text-xs mb-3">0{index + 1}</div>
+                <h3 className="text-accent-yellow text-lg font-bold mb-3">{feature.title}</h3>
+                <p className="text-accent-yellow/50 text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -122,12 +122,12 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-terminal-green text-2xl md:text-4xl font-bold tracking-tight mb-8">
+            <h2 className="text-accent-yellow text-2xl md:text-4xl font-bold tracking-tight mb-8">
               What will you build?
             </h2>
             <a
               href="/dashboard"
-              className="inline-block border border-terminal-green text-terminal-green px-8 py-3 text-sm tracking-widest uppercase hover:bg-terminal-green hover:text-black transition-all duration-300"
+              className="inline-block border border-accent-yellow text-accent-yellow px-8 py-3 text-sm tracking-widest uppercase hover:bg-accent-yellow hover:text-black transition-all duration-300"
             >
               START BUILDING →
             </a>

@@ -25,7 +25,7 @@ export default function Dashboard() {
       <FloatingBlocks />
       <ClientNavbar />
       
-      <main className="relative z-20 px-6 py-24 max-w-7xl mx-auto pb-24">
+      <main className="relative z-20 px-6 pt-20 pb-24 max-w-7xl mx-auto">
         <DashboardContent />
       </main>
 

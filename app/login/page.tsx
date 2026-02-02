@@ -20,12 +20,12 @@ const LoginContent = dynamic(
 
 export default function Login() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-terminal-green scanline">
+    <div className="min-h-screen bg-[#0a0a0a] text-accent-yellow scanline">
       <AsciiBackground />
       <FloatingBlocks />
       <ClientNavbar />
       
-      <main className="relative z-20 px-6 py-32 max-w-7xl mx-auto pb-24">
+      <main className="relative z-20 px-6 pt-24 pb-24 max-w-7xl mx-auto">
         <LoginContent />
       </main>
 

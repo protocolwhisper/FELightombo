@@ -1,41 +1,43 @@
 "use client";
 
 import Link from 'next/link';
+import PixelDog from './PixelDog';
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-sm border-t border-terminal-green/20">
+    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm">
       {/* Status bar */}
-      <div className="px-6 py-3 flex flex-wrap items-center justify-between text-xs text-terminal-green/60 gap-4">
-        <div className="flex items-center gap-6">
-          <span className="text-terminal-green">// current status:</span>
-        </div>
-        
-        <div className="flex items-center gap-4 flex-wrap">
-          <span className="hover:text-terminal-green transition-colors cursor-pointer">
+      <div className="px-6 py-2 flex items-center justify-between text-xs text-accent-yellow/60">
+        <div className="flex items-center gap-4">
+          <span className="text-accent-yellow">// status:</span>
+          <span className="hover:text-accent-yellow transition-colors cursor-pointer">
             available for fun
           </span>
           <span className="opacity-40">|</span>
-          <span className="hover:text-terminal-green transition-colors cursor-pointer">
+          <span className="hover:text-accent-yellow transition-colors cursor-pointer">
             no meetings policy
           </span>
           <span className="opacity-40">|</span>
-          <span className="hover:text-terminal-green transition-colors cursor-pointer">
-            collabing w/ cool global agencies
-          </span>
+          <a 
+            href="https://crates.io" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-accent-yellow transition-colors"
+          >
+            crates.io →
+          </a>
           <span className="opacity-40">|</span>
-          <span className="hover:text-terminal-green transition-colors cursor-pointer">
-            experiencing life in human form
-          </span>
+          <Link href="/billing" className="hover:text-accent-yellow transition-colors">
+            billing & quotes
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
-          <Link href="mailto:hello@lightombo.dev" className="hover:text-terminal-green transition-colors underline">
+          {/* 8-bit pitbull */}
+          <PixelDog />
+          <Link href="mailto:hello@lightombo.dev" className="hover:text-accent-yellow transition-colors underline">
             hello@lightombo.dev
           </Link>
-          <span className="text-terminal-green/40">
-            site by <span className="text-terminal-green">LTMB</span> 24-25©
-          </span>
         </div>
       </div>
     </footer>

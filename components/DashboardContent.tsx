@@ -338,18 +338,18 @@ export default function DashboardContent() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="border border-terminal-green/30 bg-black/50"
+            className="border-2 border-terminal-green/50 bg-[#0d1a0d]/90"
           >
-            <div className="border-b border-terminal-green/30 px-4 py-2 flex items-center justify-between">
-              <span className="text-terminal-green/60 text-xs">// connection</span>
-              <div className={`w-2 h-2 ${
+            <div className="border-b-2 border-terminal-green/50 bg-terminal-green/10 px-4 py-3 flex items-center justify-between">
+              <span className="text-terminal-green font-bold text-sm">// connection</span>
+              <div className={`w-3 h-3 ${
                 connectionStatus === "connected" ? "bg-terminal-green" :
                 connectionStatus === "connecting" ? "bg-terminal-green/50 animate-pulse" :
-                "bg-terminal-green/20"
+                "bg-terminal-green/30"
               }`} />
             </div>
             
-            <div className="p-6">
+            <div className="p-6 bg-[#0a120a]">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1">
                   <label className="block text-xs text-terminal-green/50 mb-2">
@@ -405,36 +405,36 @@ export default function DashboardContent() {
               animate={{ opacity: 1 }}
               className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
             >
-              <div className="border border-terminal-green/30 p-4">
-                <p className="text-xs text-terminal-green/50 uppercase">total</p>
-                <p className="text-2xl text-terminal-green mt-1">{metrics.total}</p>
+              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+                <p className="text-xs text-terminal-green/70 uppercase font-bold">total</p>
+                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.total}</p>
               </div>
-              <div className="border border-purple-400/30 p-4">
-                <p className="text-xs text-purple-400/60 uppercase">swaps</p>
-                <p className="text-2xl text-purple-400 mt-1">{metrics.swaps}</p>
+              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+                <p className="text-xs text-terminal-green/70 uppercase font-bold">swaps</p>
+                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.swaps}</p>
               </div>
-              <div className="border border-terminal-green/30 p-4">
-                <p className="text-xs text-terminal-green/50 uppercase">transfers</p>
-                <p className="text-2xl text-terminal-green mt-1">{metrics.transfers}</p>
+              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+                <p className="text-xs text-terminal-green/70 uppercase font-bold">transfers</p>
+                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.transfers}</p>
               </div>
-              <div className="border border-blue-400/30 p-4">
-                <p className="text-xs text-blue-400/60 uppercase">mints</p>
-                <p className="text-2xl text-blue-400 mt-1">{metrics.mints}</p>
+              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+                <p className="text-xs text-terminal-green/70 uppercase font-bold">mints</p>
+                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.mints}</p>
               </div>
-              <div className="border border-red-400/30 p-4">
-                <p className="text-xs text-red-400/60 uppercase">burns</p>
-                <p className="text-2xl text-red-400 mt-1">{metrics.burns}</p>
+              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+                <p className="text-xs text-terminal-green/70 uppercase font-bold">burns</p>
+                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.burns}</p>
               </div>
-              <div className="border border-terminal-green/40 p-4">
-                <p className="text-xs text-terminal-green/50 uppercase">unique</p>
-                <p className="text-2xl text-terminal-green mt-1">{metrics.uniqueAccounts.size}</p>
+              <div className="border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
+                <p className="text-xs text-terminal-green/70 uppercase font-bold">unique</p>
+                <p className="text-2xl text-terminal-green mt-1 font-bold">{metrics.uniqueAccounts.size}</p>
               </div>
             </motion.div>
           )}
 
           {/* Volume & Actions */}
           {events.length > 0 && (
-            <div className="flex flex-wrap items-center justify-between gap-4 border border-terminal-green/30 p-4">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-2 border-terminal-green/50 bg-[#0d1a0d] p-4">
               <div className="flex items-center gap-6 text-sm">
                 <div>
                   <span className="text-terminal-green/50">volume:</span>
@@ -467,25 +467,25 @@ export default function DashboardContent() {
           )}
 
           {/* Events List */}
-          <div className="border border-terminal-green/30">
-            <div className="px-4 py-3 border-b border-terminal-green/30 flex items-center justify-between">
-              <span className="text-terminal-green/60 text-xs">// live_events</span>
-              <span className="text-xs text-terminal-green/40">{events.length}/100</span>
+          <div className="border-2 border-terminal-green/50 bg-[#0d1a0d]/90">
+            <div className="px-4 py-3 border-b-2 border-terminal-green/50 bg-terminal-green/10 flex items-center justify-between">
+              <span className="text-terminal-green font-bold text-sm">// live_events</span>
+              <span className="text-xs text-terminal-green">{events.length}/100</span>
             </div>
             
-            <div className="max-h-[500px] overflow-y-auto">
+            <div className="max-h-[500px] overflow-y-auto bg-[#0a120a]">
               {events.length === 0 ? (
-                <div className="px-6 py-12 text-center text-terminal-green/40 text-sm">
+                <div className="px-6 py-12 text-center text-terminal-green/60 text-sm">
                   {connectionStatus === "connected" 
                     ? "waiting for events..."
                     : "connect to start streaming"}
                 </div>
               ) : (
-                <div className="divide-y divide-terminal-green/10">
+                <div className="divide-y divide-terminal-green/20">
                   {events.map((event, index) => (
                     <div
                       key={`${event.cursor}-${index}`}
-                      className={`px-4 py-3 border-l-2 ${getEventColor(event.type)} bg-black/30`}
+                      className={`px-4 py-3 border-l-4 ${getEventColor(event.type)} bg-[#0a120a] hover:bg-terminal-green/5 transition-colors`}
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">

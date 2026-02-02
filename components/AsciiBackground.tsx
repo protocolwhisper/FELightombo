@@ -79,8 +79,8 @@ export default function AsciiBackground() {
           particle.x = Math.random() * canvas.width;
         }
 
-        // Draw
-        ctx.fillStyle = `rgba(200, 250, 66, ${particle.opacity})`;
+        // Draw - yellow theme
+        ctx.fillStyle = `rgba(255, 195, 0, ${particle.opacity})`;
         ctx.fillText(particle.char, particle.x, particle.y);
       });
 

@@ -19,7 +19,7 @@ export default function FloatingBlocks() {
       {blocks.map((block, i) => (
         <motion.div
           key={i}
-          className="absolute bg-terminal-green/80"
+          className="absolute bg-accent-yellow/80"
           style={{
             width: block.size,
             height: block.size,
