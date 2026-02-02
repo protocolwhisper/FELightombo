@@ -20,8 +20,8 @@ export default function NavbarContent() {
       {/* Top left brand */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-sm">
         <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="text-accent-yellow font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <Link href="/" className="text-accent-yellow font-bold text-lg tracking-tight hover:opacity-80 transition-opacity whitespace-nowrap">
               LIGHTOMBO
             </Link>
             <StaticDog />
